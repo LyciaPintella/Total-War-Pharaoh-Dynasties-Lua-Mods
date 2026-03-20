@@ -27,10 +27,10 @@
 			"editor.defaultFormatter": "Koihik.vscode-lua-format"
 		},
 		"Lua.workspace.library": [
-			"../../Total War LUA Autogen - Warhammer III/battle/",
-			"../../Total War LUA Autogen - Warhammer III/campaign/",
-			"../../Total War LUA Autogen - Warhammer III/frontend/",
-			"../../Total War LUA Autogen - Warhammer III/global/",
+			"../../TW Lua Autogen - Warhammer III/battle/",
+			"../../TW Lua Autogen - Warhammer III/campaign/",
+			"../../TW Lua Autogen - Warhammer III/frontend/",
+			"../../TW Lua Autogen - Warhammer III/global/",
 			"${3rd}/lfs/library"
 		],
 		"files.exclude": {

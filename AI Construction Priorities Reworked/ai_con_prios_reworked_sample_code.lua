@@ -3,52 +3,41 @@
 -- -------------------------------------------------------------------------- --
 --
 -- When confederating a faction you gain their current treasury as well.
-
 -- TODO Implement new feature that increases the globalLimit for each army that was confederated.
 -- We'll likely have to just keep a running total of the number of armies each faction has at the start of each turn.
-
-
 -- -------------------------------------------------------------------------- --
 --                      CIT System Declarations                               --
 -- -------------------------------------------------------------------------- --
-
-
 -- Initialize the settings with default values.
 -- If MCT is used then some of these values will be overwritten by MCT.
 local modSettings = {
-     enableLogging       = false,              -- Allow a log file to be written.
-     logErrorsOnly       = false,              -- If logging is enabled, should we only log error messages?
-     logName             = "ace_confederate_treasury.txt",
-     includeAI           = true,               -- Whether or not the AI should also get the bonus background income when confederating.
-     includeTreasury     = true,               -- Whether or not confederation should also grant the confederated faction's treasury to the confederating faction.
-     includeAncillaries  = true,               -- Whether or not confederation should also grant all the ancillaries of the confederated faction.
-     uniquenessLimit     = 50,                 -- Items at or above this uniqness score will display an event notification to the player when received.
-     rdllLimit           = 10000,              -- The maximum amount of treasury granted to the confederating faction if the RDLL interaction mode is set to Limited.
-     rdllInteractionMode = "rdllModeLimit",    -- The interaction mode that determines how this mod interacts with the Recruit Defeated Legendary Lords (RDLL) mod.
-     globalLimit         = 30000,              -- The maximum amount of treasury granted to the confederating faction, regardless of RDLL mod.
+     enableLogging = false, -- Allow a log file to be written.
+     logErrorsOnly = false, -- If logging is enabled, should we only log error messages?
+     logName = "ace_confederate_treasury.txt",
+     includeAI = true, -- Whether or not the AI should also get the bonus background income when confederating.
+     includeTreasury = true, -- Whether or not confederation should also grant the confederated faction's treasury to the confederating faction.
+     includeAncillaries = true, -- Whether or not confederation should also grant all the ancillaries of the confederated faction.
+     uniquenessLimit = 50, -- Items at or above this uniqness score will display an event notification to the player when received.
+     rdllLimit = 10000, -- The maximum amount of treasury granted to the confederating faction if the RDLL interaction mode is set to Limited.
+     rdllInteractionMode = "rdllModeLimit", -- The interaction mode that determines how this mod interacts with the Recruit Defeated Legendary Lords (RDLL) mod.
+     globalLimit = 30000 -- The maximum amount of treasury granted to the confederating faction, regardless of RDLL mod.
 }
 
 -- This will be the number of seconds to wait before a the treasury is transferred.
 local treasuryTransferDelay = 1
 
 -- The following MCT settings are locked and may not be changed once the campaign starts.
-local lockedSettings = {
-     includeAI = true
-}
-
+local lockedSettings = {includeAI = true}
 
 -- -------------------------------------------------------------------------- --
 --                            Function Definitions                            --
 -- -------------------------------------------------------------------------- --
 
-
 local function sorted_pairs(t)
      -- Provided by GPT-4. Sorting a dictionary is key to preventing desyncs in multiplayer.
      -- Extract and sort the keys
      local keys = {}
-     for k in pairs(t) do
-          table.insert(keys, k)
-     end
+     for k in pairs(t) do table.insert(keys, k) end
      table.sort(keys)
 
      -- Iterator function
@@ -56,12 +45,9 @@ local function sorted_pairs(t)
      return function()
           i = i + 1
           local key = keys[i]
-          if key then
-               return key, t[key]
-          end
+          if key then return key, t[key] end
      end
 end
-
 
 local function ace_log(text, append)
      -- Logging function that may only be called after/on first tick.
@@ -80,9 +66,7 @@ local function ace_log(text, append)
 
      -- Attempt to open the file.
      local logFile, err = io.open(modSettings.logName, mode)
-     if not logFile then
-          return
-     end
+     if not logFile then return end
 
      -- Write to the file and close it.
      if text == "" then
@@ -93,143 +77,112 @@ local function ace_log(text, append)
      logFile:close()
 end
 
-
 local function init()
      -- We clear the log file each new game, or at least track when the script starts.
-     if cm:is_new_game() then ace_log("Script start.", false) else ace_log("Script start.") end
+     if cm:is_new_game() then
+          ace_log("Script start.", false)
+     else
+          ace_log("Script start.")
+     end
 
+     core:add_listener("ace_cit_grant_treasury", "FactionJoinsConfederation", function(context)
+          local isPlayer = context:confederation():is_human()
+          return isPlayer or (not isPlayer and modSettings.includeAI)
+     end, function(context)
+          local confederator = context:confederation()
+          local confederatorName = confederator:name()
+          local confederated = context:faction()
+          local confederatedName = confederated:name()
 
-     core:add_listener(
-          "ace_cit_grant_treasury",
-          "FactionJoinsConfederation",
-          function(context)
-               local isPlayer = context:confederation():is_human()
-               return isPlayer or (not isPlayer and modSettings.includeAI)
-          end,
-          function(context)
-               local confederator     = context:confederation()
-               local confederatorName = confederator:name()
-               local confederated     = context:faction()
-               local confederatedName = confederated:name()
+          --- TREASURY ---
+          -- We grant the confederating faction the confederated faction's treasury, if enabled in the mod settings.
+          if modSettings.includeTreasury then
+               local treasury = confederated:treasury()
 
+               -- We need to wait a bit for the RDLL mod to save a named value, if the mod is being used, before we check for it.
+               -- So we start a callback to delay the treasury transfer until after the saved value would be saved, if at all.
+               cm:callback(function()
+                    local confederatorName = confederatorName
+                    local confederatedName = confederatedName
+                    local gainAmount = treasury
+                    local logText = ""
 
-               --- TREASURY ---
-               -- We grant the confederating faction the confederated faction's treasury, if enabled in the mod settings.
-               if modSettings.includeTreasury then
-                    local treasury = confederated:treasury()
+                    -- We respect the gain limits set by the player.
+                    if modSettings.globalLimit > 0 and gainAmount > modSettings.globalLimit then
+                         gainAmount = modSettings.globalLimit
+                         logText = " (Globally Limited)"
+                    end
 
+                    -- After the delay, we see if this confederation was through the RDLL mod.
+                    -- We do this by checking for a specific saved value RDLL generates when confederating.
+                    if cm:get_saved_value("rd_choice_0_" .. confederatedName) == false then
+                         -- Then we modify the amount of treasury gained based on the RDLL mode.
+                         if modSettings.rdllInteractionMode ~= "rdllModeDisable" then
+                              -- If the RDLL mode is set to Limited we clamp the amout of treasury gained, if necessary.
+                              if modSettings.rdllInteractionMode == "rdllModeLimit" then
+                                   logText = logText .. " (RDLL Mode Limited)"
 
-                    -- We need to wait a bit for the RDLL mod to save a named value, if the mod is being used, before we check for it.
-                    -- So we start a callback to delay the treasury transfer until after the saved value would be saved, if at all.
-                    cm:callback(
-                         function()
-                              local confederatorName = confederatorName
-                              local confederatedName = confederatedName
-                              local gainAmount       = treasury
-                              local logText          = ""
-
-
-                              -- We respect the gain limits set by the player.
-                              if modSettings.globalLimit > 0 and gainAmount > modSettings.globalLimit then
-                                   gainAmount = modSettings.globalLimit
-                                   logText = " (Globally Limited)"
+                                   if gainAmount > modSettings.rdllLimit then gainAmount = modSettings.rdllLimit end
                               end
-
-
-                              -- After the delay, we see if this confederation was through the RDLL mod.
-                              -- We do this by checking for a specific saved value RDLL generates when confederating.
-                              if cm:get_saved_value("rd_choice_0_" .. confederatedName) == false then
-                                   -- Then we modify the amount of treasury gained based on the RDLL mode.
-                                   if modSettings.rdllInteractionMode ~= "rdllModeDisable" then
-                                        -- If the RDLL mode is set to Limited we clamp the amout of treasury gained, if necessary.
-                                        if modSettings.rdllInteractionMode == "rdllModeLimit" then
-                                             logText = logText .. " (RDLL Mode Limited)"
-
-                                             if gainAmount > modSettings.rdllLimit then
-                                                  gainAmount = modSettings.rdllLimit
-                                             end
-                                        end
-                                   else
-                                        logText = logText .. " (RDLL Mode Disabled)"
-                                        gainAmount = 0
-                                   end
-                              end
-
-
-                              -- We grant the (potentially adjusted) treasury.
-                              cm:treasury_mod(confederatorName, gainAmount)
-                              ace_log(confederatorName ..
-                              " confederated " ..
-                              confederatedName .. ". Gaining their treasury of: " .. gainAmount .. logText)
-                         end,
-                         treasuryTransferDelay
-                    )
-               end
-
-
-               --- ANCILLARIES ---
-               -- We "transfer" all the ancillaries of the condeferated faction, if enabled in the mod settings.
-               if modSettings.includeAncillaries then
-                    local ancillaryCount         = common.get_context_value("CcoCampaignFaction",
-                         confederated:command_queue_index(), "AncillaryList.Size")
-                    local ancillaryKey           = nil
-                    local isTransferrable        = nil
-                    local uniquenessScore        = 0
-                    local isUniqueEnough         = false
-                    local transferredAncillaries = {
-                         -- key = {
-                         --     count           = 0,
-                         --     isUniqueEnough  = false
-                         -- }
-                    }
-
-
-                    for i = 0, ancillaryCount - 1 do
-                         isTransferrable = common.get_context_value("CcoCampaignFaction",
-                              confederated:command_queue_index(),
-                              "AncillaryList.At(" .. i .. ").AncillaryRecordContext.Transferrable")
-                         uniquenessScore = common.get_context_value("CcoCampaignFaction",
-                              confederated:command_queue_index(),
-                              "AncillaryList.At(" .. i .. ").AncillaryRecordContext.UniquenessScore")
-                         isUniqueEnough  = uniquenessScore >= modSettings.uniquenessLimit
-
-
-                         -- We count the number of transferrable ancillaries,
-                         -- and record their keys and uniqueness score.
-                         if isTransferrable then
-                              ancillaryKey = common.get_context_value("CcoCampaignFaction",
-                                   confederated:command_queue_index(),
-                                   "AncillaryList.At(" .. i .. ").AncillaryRecordContext.Key")
-
-                              if not transferredAncillaries[ancillaryKey] then
-                                   transferredAncillaries[ancillaryKey] = {
-                                        count          = 1,
-                                        isUniqueEnough = isUniqueEnough
-                                   }
-                              else
-                                   transferredAncillaries[ancillaryKey].count = transferredAncillaries[ancillaryKey]
-                                   .count + 1
-                              end
+                         else
+                              logText = logText .. " (RDLL Mode Disabled)"
+                              gainAmount = 0
                          end
                     end
 
+                    -- We grant the (potentially adjusted) treasury.
+                    cm:treasury_mod(confederatorName, gainAmount)
+                    ace_log(confederatorName .. " confederated " .. confederatedName .. ". Gaining their treasury of: " .. gainAmount .. logText)
+               end, treasuryTransferDelay)
+          end
 
-                    -- Finally we remove all the ancillaries from the original faction,
-                    -- and grant the same number of each to the confederating faction.
-                    for key, data in sorted_pairs(transferredAncillaries) do
-                         cm:force_remove_ancillary_from_faction(confederated, key)
+          --- ANCILLARIES ---
+          -- We "transfer" all the ancillaries of the condeferated faction, if enabled in the mod settings.
+          if modSettings.includeAncillaries then
+               local ancillaryCount = common.get_context_value("CcoCampaignFaction", confederated:command_queue_index(), "AncillaryList.Size")
+               local ancillaryKey = nil
+               local isTransferrable = nil
+               local uniquenessScore = 0
+               local isUniqueEnough = false
+               local transferredAncillaries = {
+                    -- key = {
+                    --     count           = 0,
+                    --     isUniqueEnough  = false
+                    -- }
+               }
 
-                         for x = 1, data.count do
-                              cm:add_ancillary_to_faction(confederator, key, data.isUniqueEnough)
+               for i = 0, ancillaryCount - 1 do
+                    isTransferrable = common.get_context_value("CcoCampaignFaction", confederated:command_queue_index(),
+                                                               "AncillaryList.At(" .. i .. ").AncillaryRecordContext.Transferrable")
+                    uniquenessScore = common.get_context_value("CcoCampaignFaction", confederated:command_queue_index(),
+                                                               "AncillaryList.At(" .. i .. ").AncillaryRecordContext.UniquenessScore")
+                    isUniqueEnough = uniquenessScore >= modSettings.uniquenessLimit
+
+                    -- We count the number of transferrable ancillaries,
+                    -- and record their keys and uniqueness score.
+                    if isTransferrable then
+                         ancillaryKey = common.get_context_value("CcoCampaignFaction", confederated:command_queue_index(),
+                                                                 "AncillaryList.At(" .. i .. ").AncillaryRecordContext.Key")
+
+                         if not transferredAncillaries[ancillaryKey] then
+                              transferredAncillaries[ancillaryKey] = {count = 1, isUniqueEnough = isUniqueEnough}
+                         else
+                              transferredAncillaries[ancillaryKey].count = transferredAncillaries[ancillaryKey].count + 1
                          end
-
-                         ace_log(confederatorName .. " gained " .. data.count .. " " .. key)
                     end
                end
-          end,
-          true
-     )
 
+               -- Finally we remove all the ancillaries from the original faction,
+               -- and grant the same number of each to the confederating faction.
+               for key, data in sorted_pairs(transferredAncillaries) do
+                    cm:force_remove_ancillary_from_faction(confederated, key)
+
+                    for x = 1, data.count do cm:add_ancillary_to_faction(confederator, key, data.isUniqueEnough) end
+
+                    ace_log(confederatorName .. " gained " .. data.count .. " " .. key)
+               end
+          end
+     end, true)
 
      -- core:add_listener(
      --     "ace_cit_test",
@@ -258,7 +211,6 @@ local function init()
      -- )
 end
 
-
 local function get_finalized_mct_setting(mctMod, table, settingName)
      -- Loads the finalized MCT setting of the given setting name, if found, then locks the setting to prevent changes to it if it should be locked.
      local setting = mctMod:get_option_by_key(settingName, true)
@@ -266,12 +218,10 @@ local function get_finalized_mct_setting(mctMod, table, settingName)
           table[settingName] = setting:get_finalized_setting()
           if lockedSettings[settingName] then
                -- setting:set_locked(true, common.get_localised_string("ace_btc_mct_setting_locked"))
-               setting:set_locked(true,
-                    "This setting may not be changed once the campaign has started. Changes must be made at the Main Menu before starting a campaign.")
+               setting:set_locked(true, "This setting may not be changed once the campaign has started. Changes must be made at the Main Menu before starting a campaign.")
           end
      end
 end
-
 
 local function get_mct_settings(context)
      -- Loads all of the MCT settings of this mod.
@@ -291,35 +241,16 @@ local function get_mct_settings(context)
      end
 end
 
-
-
 -- -------------------------------------------------------------------------- --
 --                                 Execution                                  --
 -- -------------------------------------------------------------------------- --
 
-
 -- If we have the MP MCT mod enabled we work with it.
-core:add_listener(
-     "ace_cit_mct",
-     "MctInitialized",
-     true,
-     function(context)
-          get_mct_settings(context)
-          isUsingMCT = true
-     end,
-     true
-)
+core:add_listener("ace_cit_mct", "MctInitialized", true, function(context)
+     get_mct_settings(context)
+     isUsingMCT = true
+end, true)
 
-
-core:add_listener(
-     "ace_cit_mct_setting_finalized",
-     "MctFinalized",
-     true,
-     function(context)
-          get_mct_settings(context)
-     end,
-     true
-)
-
+core:add_listener("ace_cit_mct_setting_finalized", "MctFinalized", true, function(context) get_mct_settings(context) end, true)
 
 cm:add_post_first_tick_callback(init)
