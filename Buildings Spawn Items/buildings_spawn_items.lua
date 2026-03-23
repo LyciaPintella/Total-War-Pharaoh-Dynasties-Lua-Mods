@@ -38,33 +38,7 @@
 ! Visitor's Quarters, Damokoros' Road Infrastructure: phar_main_common_general_22 (Scout: +35% Line of Sight), phar_main_common_general_24 (Tracker: -10% Enemy Movement in Region), phar_main_common_general_28 (Sandals: - Prayer Movement Restoration +20%), phar_main_common_general_7 (Devoted Taskmaster: +4 Influence), phar_main_common_general_9 (Trapper: -10% Enemy Movement in Region), phar_main_rare_1 (Libu Tracker: -10% Enemy Movement Range in Region & 5% Ambush Chance).
      * Variants: phar_main_all_province_management_roads_3, phar_map_bab_province_management_influence_roads_type_a_3, phar_map_myc_province_management_roads_3
 
-Champion's Hall: phar_main_rare_15 (Duellist: +5% Ambush Defence Channce, XP for sword and khopesh units),  phar_main_rare_16 (Blind Veteran: +20% Ambush defence chance, XP for spear units), phar_main_rare_17 (Strongman - +2 Public Order, XP for axe and club units).
-
-          * Variants listed below:
-     ? phar_main_amenmesse_military_administration_unit_training_type_b_1
-     ? phar_main_bay_military_administration_unit_training_type_b_1
-     ? phar_main_canaan_military_administration_unit_training_type_b_1
-     ? phar_main_hatti_military_administration_unit_training_type_b_1
-     ? phar_main_irsu_military_administration_unit_training_type_b_1
-     ? phar_main_kemet_military_administration_unit_training_type_b_1
-     ? phar_main_kuru_military_administration_unit_training_type_b_1
-     ? phar_main_kurunta_military_administration_unit_training_type_b_1
-     ? phar_main_ramesses_military_administration_unit_training_type_b_1
-     ? phar_main_seti_military_administration_unit_training_type_b_1
-     ? phar_main_suppiluliuma_military_administration_unit_training_type_b_1
-     ? phar_main_tausret_military_administration_unit_training_type_b_1
-     ? phar_map_achean_military_administration_unit_training_type_b_1
-     ? phar_map_ash_military_administration_unit_training_type_b_1
-     ? phar_map_bab_military_administration_unit_training_type_b_1
-     ? phar_map_elam_military_administration_unit_training_type_b_1
-     ? phar_map_luwian_military_administration_unit_training_type_b_1
-     ? phar_map_meso_military_administration_unit_training_type_b_1
-     ? phar_map_mycenae_military_administration_unit_training_type_b_1
-     ? phar_map_thracian_military_administration_unit_training_type_b_1
-     ? phar_map_urartu_military_administration_unit_training_type_b_1
-     ? phar_map_wilusa_military_administration_unit_training_type_b_1
-
-]] --
+]]-- 
 --[[
 Grand Temple of Amun - (phar_main_religion_cult_center_grand_temple_amun_1): Small Altar (phar_main_common_general_15 - +1 prayer duration).
 Grand Temple of Anubis - (phar_main_religion_cult_center_grand_temple_anubis_1): Small Altar (phar_main_common_general_15 - +1 prayer duration).
@@ -103,17 +77,41 @@ Grand Temple of Zeus - (phar_map_religion_cult_center_grand_temple_zeus_1): Smal
 ? Native Barracks (Major Settlement) - (phar_map_all_military_native_type_a_mat_assur_4): phar_main_rare_3 (Mitanni Horse Trainer, +20% movement to Force March and Full Speed stance, 325 XP per turn for chariots), phar_main_rare_5 (Assyrian Mercenary - +2 Influence, +15% Combat XP for all units)
 ? Native Barracks (Major Settlement) - (phar_map_all_military_native_type_a_mat_tamti_4): phar_main_rare_3 (Mitanni Horse Trainer, +20% movement to Force March and Full Speed stance, 325 XP per turn for chariots), phar_main_rare_5 (Assyrian Mercenary - +2 Influence, +15% Combat XP for all units)
 
-]] --
+]]--
 --[[
 
-Surgeon's Practice: phar_main_rare_2: +5 Rel with Kemet factions, 5% Cmp Replen. phar_main_rare_6: +5 Relationship with Babylonian factions, 5% Cmp Replen. phar_sea_rare_8: -40% Bodyguard Fatigue Buildup, phar_main_common_general_10: -20% General Fatigue Buildup,
-	* Variant: phar_main_all_province_management_growth_type_a_3
 
-Oxen Cart Assembly:  phar_sea_rare_9, phar_main_common_general_22 (Scout: +35% Line of Sight), phar_main_common_general_24 (Tracker: -10% Enemy Movement in Region), phar_main_common_general_28 (Sandals: - Prayer Movement Restoration +20%), phar_main_common_general_7 (Devoted Taskmaster: +4 Influence), phar_main_common_general_9 (Trapper: 10% Enemy Movement in Region), phar_main_rare_1 (Libu Tracker: -10% Enemy Movement Range in Region & 5% Ambush Chance).
-     * Variant: phar_sea_peleset_province_management_movement_production_boost_3
+Champion's Hall: phar_main_rare_15 (Duellist: +5% Ambush Defence Channce, XP for sword and khopesh units),  phar_main_rare_16 (Blind Veteran: +20% Ambush defence chance, XP for spear units), phar_main_rare_17 (Strongman - +2 Public Order, XP for axe and club units).
+
+          * Variants listed below:
+     ? phar_main_amenmesse_military_administration_unit_training_type_b_1
+     ? phar_main_bay_military_administration_unit_training_type_b_1
+     ? phar_main_canaan_military_administration_unit_training_type_b_1
+     ? phar_main_hatti_military_administration_unit_training_type_b_1
+     ? phar_main_irsu_military_administration_unit_training_type_b_1
+     ? phar_main_kemet_military_administration_unit_training_type_b_1
+     ? phar_main_kuru_military_administration_unit_training_type_b_1
+     ? phar_main_kurunta_military_administration_unit_training_type_b_1
+     ? phar_main_ramesses_military_administration_unit_training_type_b_1
+     ? phar_main_seti_military_administration_unit_training_type_b_1
+     ? phar_main_suppiluliuma_military_administration_unit_training_type_b_1
+     ? phar_main_tausret_military_administration_unit_training_type_b_1
+     ? phar_map_achean_military_administration_unit_training_type_b_1
+     ? phar_map_ash_military_administration_unit_training_type_b_1
+     ? phar_map_bab_military_administration_unit_training_type_b_1
+     ? phar_map_elam_military_administration_unit_training_type_b_1
+     ? phar_map_luwian_military_administration_unit_training_type_b_1
+     ? phar_map_meso_military_administration_unit_training_type_b_1
+     ? phar_map_mycenae_military_administration_unit_training_type_b_1
+     ? phar_map_thracian_military_administration_unit_training_type_b_1
+     ? phar_map_urartu_military_administration_unit_training_type_b_1
+     ? phar_map_wilusa_military_administration_unit_training_type_b_1
 
 Granary, Provisioning Headquarters: phar_main_common_general_29 (Mining Hammer: -1 Enemy Siege Holdout Time, -10% Bronze Upkeep Cost), phar_main_common_general_22 (Scout: +35% Line of Sight).
      * Variants: phar_main_all_resource_production_modifier_food_3, phar_main_tausret_resource_production_modifier_food_3
+
+Oxen Cart Assembly:  phar_sea_rare_9, phar_main_common_general_22 (Scout: +35% Line of Sight), phar_main_common_general_24 (Tracker: -10% Enemy Movement in Region), phar_main_common_general_28 (Sandals: - Prayer Movement Restoration +20%), phar_main_common_general_7 (Devoted Taskmaster: +4 Influence), phar_main_common_general_9 (Trapper: 10% Enemy Movement in Region), phar_main_rare_1 (Libu Tracker: -10% Enemy Movement Range in Region & 5% Ambush Chance).
+     * Variant: phar_sea_peleset_province_management_movement_production_boost_3
 
 Palace of Pleasures: phar_main_rare_6 (Babylonian Healer - Encamp Replenishment & +3 Babylonian Relations), phar_sea_common_1 (+5 Labour Growth), phar_sea_rare_8 (40% Bodyguard Fatigue Reduction).
      * Variants: phar_main_all_province_management_growth_type_a_3, phar_map_bab_province_management_happiness_growth_type_a_3
@@ -126,14 +124,17 @@ Royal Goldsmith: phar_main_rare_24 (Golden Scarab: -10% to Gold Recruitment and 
 
 Royal Fishery: phar_main_rare_27 (Dried Fish: -25% Deep Sea Attrition, -10% Army Food Upkeep), phar_main_rare_40 (Heavy Ropes: -1 Workforce Cost for Military Structures, -1 Turn to Enemy Siege Holdout Time), phar_sea_common_2 (Royal Fishery: +20% to Campaign Movement Range at Sea).
      * Variant: phar_main_all_resource_production_port_coast_2
-	
-Translators Quarters - (phar_main_all_province_management_main_building_poc_happiness_boost_1): phar_main_common_general__25, phar_main_common_general__26, phar_main_common_general__27, Diplomat (phar_main_rare_11).
 
-Wisdom Codecs: Field Advisor (phar_main_common_general_16 - no effect in data.pack), Wise Nobleman (phar_main_rare_18 - +2 influence, XP for ranged infantry) Soothsayer (phar_main_rare_8 - subterfuge/governance stat).
-     * Variant: phar_main_all_province_management_main_building_poc_legitimacy_influence_boost_3
+Surgeon's Practice: phar_main_rare_2: +5 Rel with Kemet factions, 5% Cmp Replen. phar_main_rare_6: +5 Relationship with Babylonian factions, 5% Cmp Replen. phar_sea_rare_8: -40% Bodyguard Fatigue Buildup, phar_main_common_general_10: -20% General Fatigue Buildup,
+	* Variant: phar_main_all_province_management_growth_type_a_3
+
+Translators Quarters - (phar_main_all_province_management_main_building_poc_happiness_boost_1): phar_main_common_general__25, phar_main_common_general__26, phar_main_common_general__27, Diplomat (phar_main_rare_11).
 
 Wine Market: phar_main_common_general_12, phar_main_rare_19, phar_main_rare_31, phar_main_rare_42 (Senet Game Set: +2 Siege Holdout Time, phar_main_rare_7 (Supporter: +2 Influence, +1 Presence For General).
      * Variant: phar_main_ram_province_management_production_boost_happiness_3
+
+Wisdom Codecs: Field Advisor (phar_main_common_general_16 - no effect in data.pack), Wise Nobleman (phar_main_rare_18 - +2 influence, XP for ranged infantry) Soothsayer (phar_main_rare_8 - subterfuge/governance stat).
+     * Variant: phar_main_all_province_management_main_building_poc_legitimacy_influence_boost_3
 
 ]] --
 out("anc_mod: INIT.")
