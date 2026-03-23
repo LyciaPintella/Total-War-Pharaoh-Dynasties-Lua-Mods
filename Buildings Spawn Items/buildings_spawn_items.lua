@@ -11,7 +11,6 @@
 ! Bronzeworker's District / Bronzeworkers' District: phar_main_common_shield_large, phar_main_common_shield_medium, z_bodyguard_common_equipment_two_handed_axe, z_bodyguard_common_equipment_two_handed_club, z_bodyguard_common_equipment_two_handed_spear, z_bodyguard_common_equipment_two_handed_sword
 	* Variant: phar_main_all_resource_production_bronze_mine_type_b_1
 
-
 ! Cedar Warehouse: phar_main_common_equipment_bow, phar_main_common_equipment_chariot, phar_main_common_shield_large, phar_main_common_shield_medium, phar_main_common_shield_small, phar_main_common_equipment_spear.
      * Variants: phar_map_all_resource_production_wood_mesopotamia_type_a_derivative_1, phar_map_wood_production_aegean_derivative_1, phar_map_wood_production_thrace_derivative_1, phar_map_wood_production_assuwa_derivative_1
 
@@ -32,7 +31,7 @@
 ! Visitor's Quarters, Damokoros' Road Infrastructure: phar_main_common_general_22 (Scout: +35% Line of Sight), phar_main_common_general_24 (Tracker: -10% Enemy Movement in Region), phar_main_common_general_28 (Sandals: - Prayer Movement Restoration +20%), phar_main_common_general_7 (Devoted Taskmaster: +4 Influence), phar_main_common_general_9 (Trapper: -10% Enemy Movement in Region), phar_main_rare_1 (Libu Tracker: -10% Enemy Movement Range in Region & 5% Ambush Chance).
      * Variants: phar_main_all_province_management_roads_3, phar_map_bab_province_management_influence_roads_type_a_3, phar_map_myc_province_management_roads_3
 
-Champion's Hall: phar_main_common_general_11 (sucks!), phar_main_rare_15 (Duellist: +5% Ambush Defence Channce, XP for sword and khopesh units),  phar_main_rare_16 (Blind Veteran: +20% Ambush defence chance, XP for spear units), phar_main_rare_17 (Strongman - +2 Public Order, XP for axe and club units).
+Champion's Hall: phar_main_rare_15 (Duellist: +5% Ambush Defence Channce, XP for sword and khopesh units),  phar_main_rare_16 (Blind Veteran: +20% Ambush defence chance, XP for spear units), phar_main_rare_17 (Strongman - +2 Public Order, XP for axe and club units).
 
           * Variants listed below:
      ? phar_main_amenmesse_military_administration_unit_training_type_b_1
