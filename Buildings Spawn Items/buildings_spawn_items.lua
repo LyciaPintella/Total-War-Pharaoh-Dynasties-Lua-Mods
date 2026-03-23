@@ -14,7 +14,7 @@
 ! Cedar Warehouse: phar_main_common_equipment_bow, phar_main_common_equipment_chariot, phar_main_common_shield_large, phar_main_common_shield_medium, phar_main_common_shield_small, phar_main_common_equipment_spear.
      * Variants: phar_map_all_resource_production_wood_mesopotamia_type_a_derivative_1, phar_map_wood_production_aegean_derivative_1, phar_map_wood_production_thrace_derivative_1, phar_map_wood_production_assuwa_derivative_1
 
-! Grand Bazaar: phar_main_common_general_20, Avid Collector (phar_main_rare_10), Gem Merchant (phar_main_rare_13).
+! Grand Bazaar: phar_main_common_general_20, phar_main_rare_10 (Avid Collector: +5% Ancillary Drop Rate, +10% Rare Ancillary Drop Rate), phar_main_rare_13 (Gem Merchant: +10%  Rare Ancillary Drop Rate, +35% Line of Sight)
 	* Variants: phar_main_all_resource_production_fruit_oasis_derivative_type_a_1, phar_main_irsu_resource_production_fruit_oasis_derivative_type_a_1
 
 ! House of Astrologers: phar_main_common_general_22 (Scout: +35% Line of Sight), phar_main_common_general_24 (Tracker: -10% Enemy Movement in Region), phar_main_common_general_28 (Sandals: - Prayer Movement Restoration +20%), phar_main_common_general_7 (Devoted Taskmaster: +4 Influence), phar_main_common_general_9 (Trapper: -10% Enemy Movement in Region), phar_main_rare_1 (Libu Tracker: -10% Enemy Movement Range in Region & 5% Ambush Chance).
@@ -30,7 +30,7 @@
 ! Smugglers' Market / Smuggler's Market / Smugglers' Port / Smuggler's Port: phar_main_common_general_2 (5% rare ancillary chance), phar_main_common_general_8 (5% ancillary steal), Smuggler (phar_main_rare_12 - 35% LOS 5% ancillary steal), Saboteur (phar_main_rare_14 - Reduces enemy army movement in region), Poisoner (phar_main_rare_9 - reduces enemy army movement + bodyguard lethality.).
 	* Variant: phar_main_all_resource_production_port_coast_derivative_type_a_1
 
-! Stone Carvers' District: Avid Collector (phar_main_rare_10), phar_main_rare_32 (Mining Hammer:  -1 Siege Holdout Time, -10% Bronze Upkeep Cost), phar_main_rare_7 (Supporter: +2 Influence, +1 Presence For General), phar_main_rare_42 (Senet Game Set: +2 Siege Holdout Time, +10% Unit Experience).
+! Stone Carvers' District: phar_main_rare_10 (Avid Collector: +5% Ancillary Drop Rate, +10% Rare Ancillary Drop Rate), phar_main_rare_32 (Mining Hammer:  -1 Siege Holdout Time, -10% Bronze Upkeep Cost), phar_main_rare_7 (Supporter: +2 Influence, +1 Presence For General), phar_main_rare_42 (Senet Game Set: +2 Siege Holdout Time, +10% Unit Experience).
 	* Variants: phar_main_all_resource_production_stone_mine_derivative_type_a_1, phar_main_irsu_resource_production_stone_mine_derivative_type_a_1
 
 ! Visitor's Quarters - (phar_main_all_province_management_roads_3): phar_main_common_general_22 (Scout: +35% Line of Sight), phar_main_common_general_24 (Tracker: -10% Enemy Movement in Region), phar_main_common_general_28 (Sandals: - Prayer Movement Restoration +20%), phar_main_common_general_7 (Devoted Taskmaster: +4 Influence), phar_main_common_general_9 (Trapper: 10% Enemy Movement in Region), phar_main_rare_1 (Libu Tracker: -10% Enemy Movement Range in Region & 5% Ambush Chance).
