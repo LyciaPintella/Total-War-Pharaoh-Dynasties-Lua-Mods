@@ -5,7 +5,7 @@
 ! Bazaar of the Arts: phar_main_common_general_12 (+2 Happiness), phar_main_rare_19 (+2 Happiness, +5% Replenishment in Encamp Stance), phar_main_rare_31 (-5% Attrition, +4 Workforce), phar_main_rare_42 (Senet Game Set: +2 Siege Holdout Time, +10% Unit Experience), phar_main_rare_7 (Supporter: +2 Influence, +1 Presence For General).
      * Variant: phar_main_all_province_management_happiness_type_c_3
 	
-! Bronze Proving Hall: phar_main_common_equipment_axe, phar_main_common_equipment_club, phar_main_common_equipment_spear, phar_main_common_equipment_khopesh, phar_main_common_equipment_sword
+! Bronze Proving Hall: phar_main_common_equipment_axe, phar_main_common_equipment_club, phar_main_common_equipment_spear, phar_main_common_equipment_khopesh, phar_main_common_equipment_sword 
      * Variant: phar_main_all_resource_production_bronze_mine_derivative_type_a_2
 
 ! Bronzeworker's District / Bronzeworkers' District: phar_main_common_shield_large, phar_main_common_shield_medium, z_bodyguard_common_equipment_two_handed_axe, z_bodyguard_common_equipment_two_handed_club, z_bodyguard_common_equipment_two_handed_spear, z_bodyguard_common_equipment_two_handed_sword
