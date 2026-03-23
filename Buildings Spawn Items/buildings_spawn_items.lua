@@ -71,12 +71,6 @@ Grand Temple of Ninurta - (phar_map_religion_cult_center_grand_temple_ninurta_1)
 Grand Temple of Poseidon - (phar_map_religion_cult_center_grand_temple_poseidon_1): Small Altar (phar_main_common_general_15 - +1 prayer duration).
 Grand Temple of Zeus - (phar_map_religion_cult_center_grand_temple_zeus_1): Small Altar (phar_main_common_general_15 - +1 prayer duration).
 
-? Native Barracks (Major Settlement) - (phar_main_all_military_native_type_a_kush_4 as phar_main_all_military_native_type_a_all_4_title): phar_main_rare_4 (Malachite Jewellery - 325 XP per turn for all units)
-? Native Barracks (Major Settlement) - (phar_main_all_military_native_type_a_nubia_4 as phar_main_all_military_native_type_a_all_4_title): phar_main_rare_4 (Malachite Jewellery - 325 XP per turn for all units)
-? Native Barracks (Major Settlement) - (phar_map_all_military_native_type_a_haltamti_4): phar_main_rare_3 (Mitanni Horse Trainer, +20% movement to Force March and Full Speed stance, 325 XP per turn for chariots), phar_main_rare_5 (Assyrian Mercenary - +2 Influence, +15% Combat XP for all units)
-? Native Barracks (Major Settlement) - (phar_map_all_military_native_type_a_mat_assur_4): phar_main_rare_3 (Mitanni Horse Trainer, +20% movement to Force March and Full Speed stance, 325 XP per turn for chariots), phar_main_rare_5 (Assyrian Mercenary - +2 Influence, +15% Combat XP for all units)
-? Native Barracks (Major Settlement) - (phar_map_all_military_native_type_a_mat_tamti_4): phar_main_rare_3 (Mitanni Horse Trainer, +20% movement to Force March and Full Speed stance, 325 XP per turn for chariots), phar_main_rare_5 (Assyrian Mercenary - +2 Influence, +15% Combat XP for all units)
-
 ]]--
 --[[
 
@@ -109,6 +103,13 @@ Champion's Hall: phar_main_rare_15 (Duellist: +5% Ambush Defence Channce, XP for
 
 Granary, Provisioning Headquarters: phar_main_common_general_29 (Mining Hammer: -1 Enemy Siege Holdout Time, -10% Bronze Upkeep Cost), phar_main_common_general_22 (Scout: +35% Line of Sight).
      * Variants: phar_main_all_resource_production_modifier_food_3, phar_main_tausret_resource_production_modifier_food_3
+
+? Native Barracks (Major Settlement) - (phar_main_all_military_native_type_a_kush_4 as phar_main_all_military_native_type_a_all_4_title): phar_main_rare_4 (Malachite Jewellery - 325 XP per turn for all units), phar_main_rare_1 (Libu Tracker: -10% Enemy Movement Range in Region & 5% Ambush Chance)
+? Native Barracks (Major Settlement) - (phar_main_all_military_native_type_a_nubia_4 as phar_main_all_military_native_type_a_all_4_title): phar_main_rare_4 (Malachite Jewellery - 325 XP per turn for all units), phar_main_rare_1 (Libu Tracker: -10% Enemy Movement Range in Region & 5% Ambush Chance)
+? Native Barracks (Major Settlement) - (phar_map_all_military_native_type_a_haltamti_4): phar_main_rare_3 (Mitanni Horse Trainer, +20% movement to Force March and Full Speed stance, 325 XP per turn for chariots), phar_main_rare_5 (Assyrian Mercenary - +2 Influence, +15% Combat XP for all units)
+? Native Barracks (Major Settlement) - (phar_map_all_military_native_type_a_mat_assur_4): phar_main_rare_3 (Mitanni Horse Trainer, +20% movement to Force March and Full Speed stance, 325 XP per turn for chariots), phar_main_rare_5 (Assyrian Mercenary - +2 Influence, +15% Combat XP for all units)
+? Native Barracks (Major Settlement) - (phar_map_all_military_native_type_a_mat_tamti_4): phar_main_rare_3 (Mitanni Horse Trainer, +20% movement to Force March and Full Speed stance, 325 XP per turn for chariots), phar_main_rare_5 (Assyrian Mercenary - +2 Influence, +15% Combat XP for all units)
+	
 
 Oxen Cart Assembly:  phar_sea_rare_9, phar_main_common_general_22 (Scout: +35% Line of Sight), phar_main_common_general_24 (Tracker: -10% Enemy Movement in Region), phar_main_common_general_28 (Sandals: - Prayer Movement Restoration +20%), phar_main_common_general_7 (Devoted Taskmaster: +4 Influence), phar_main_common_general_9 (Trapper: 10% Enemy Movement in Region), phar_main_rare_1 (Libu Tracker: -10% Enemy Movement Range in Region & 5% Ambush Chance).
      * Variant: phar_sea_peleset_province_management_movement_production_boost_3
@@ -222,13 +223,13 @@ local ancillary_master_list = {
      ["phar_main_irsu_resource_production_fruit_oasis_derivative_type_a_1"] = {"phar_main_rare_10", "phar_main_rare_13"},
 
      -- Southern Natives
-     ["phar_main_all_military_native_type_a_kush_4"] = {"phar_main_common_general_12"},
-     ["phar_main_all_military_native_type_a_nubia_4"] = {"phar_main_rare_4"},
+     ["phar_main_all_military_native_type_a_kush_4"] = {"phar_main_rare_4", "phar_main_rare_1"},
+     ["phar_main_all_military_native_type_a_nubia_4"] = {"phar_main_rare_4", "phar_main_rare_1"},
 
      -- Meso Natives
-     ["phar_map_all_military_native_type_a_haltamti_4"] = {"phar_main_rare_3"},
-     ["phar_map_all_military_native_type_a_mat_assur_4"] = {"phar_main_rare_3"},
-     ["phar_map_all_military_native_type_a_mat_tamti_4"] = {"phar_main_rare_3"},
+     ["phar_map_all_military_native_type_a_haltamti_4"] = {"phar_main_rare_3", "phar_sea_rare_8"},
+     ["phar_map_all_military_native_type_a_mat_assur_4"] = {"phar_main_rare_3", "phar_sea_rare_8"},
+     ["phar_map_all_military_native_type_a_mat_tamti_4"] = {"phar_main_rare_3", "phar_sea_rare_8"},
 
      -- Cult Centres
      ["phar_main_religion_cult_center_grand_temple_amun_1"] = {"phar_main_common_general_15"},
